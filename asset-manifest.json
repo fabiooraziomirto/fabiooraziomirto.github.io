@@ -1,16 +1,16 @@
 {
   "files": {
-    "main.css": "/static/css/main.9a5c6096.css",
-    "main.js": "/static/js/main.7d142007.js",
-    "static/js/453.996dcc38.chunk.js": "/static/js/453.996dcc38.chunk.js",
-    "static/media/logo.svg": "/static/media/logo.6ce24c58023cc2f8fd88fe9d219db6c6.svg",
-    "index.html": "/index.html",
-    "main.9a5c6096.css.map": "/static/css/main.9a5c6096.css.map",
-    "main.7d142007.js.map": "/static/js/main.7d142007.js.map",
-    "453.996dcc38.chunk.js.map": "/static/js/453.996dcc38.chunk.js.map"
+    "main.css": "/orders.github.io/static/css/main.9a5c6096.css",
+    "main.js": "/orders.github.io/static/js/main.53a1ae36.js",
+    "static/js/453.996dcc38.chunk.js": "/orders.github.io/static/js/453.996dcc38.chunk.js",
+    "static/media/logo.svg": "/orders.github.io/static/media/logo.6ce24c58023cc2f8fd88fe9d219db6c6.svg",
+    "index.html": "/orders.github.io/index.html",
+    "main.9a5c6096.css.map": "/orders.github.io/static/css/main.9a5c6096.css.map",
+    "main.53a1ae36.js.map": "/orders.github.io/static/js/main.53a1ae36.js.map",
+    "453.996dcc38.chunk.js.map": "/orders.github.io/static/js/453.996dcc38.chunk.js.map"
   },
   "entrypoints": [
     "static/css/main.9a5c6096.css",
-    "static/js/main.7d142007.js"
+    "static/js/main.53a1ae36.js"
   ]
 }
