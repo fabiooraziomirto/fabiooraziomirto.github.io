@@ -201,51 +201,50 @@ function FormText() {
     return (
         <>
 
-        <Container>
-            <Row>
-            <Col>
-                    <Form.Group className="mb-3" controlId="city">
-                        <Form.Label>Sede</Form.Label>
-                        <Form.Select
-                            aria-label="Località"
-                            value={city}
-                            onChange={(e) => setCity(e.target.value)}
-                        >
-                            <option value="---">---</option>
-                            <option value="Barcellona">Barcellona</option>
-                            <option value="Milazzo">Milazzo</option>
-                        </Form.Select>
-                    </Form.Group>
-                </Col>
-            </Row>
-        
-            <Row>
-                
-                <Col>
-                    <Form.Group className="mb-3" controlId="date">
-                        <Form.Label>Data</Form.Label>
-                        <Form.Control
-                            type="date"
-                            value={date}
-                            onChange={(e) => setDate(e.target.value)}
-                        />
-                    </Form.Group>
-                </Col>
-                <Col>
-                    <Form.Group className="mb-3" controlId="hour">
-                        <Form.Label>Ora</Form.Label>
-                        <Form.Control
-                            type="time"
-                            value={time}
-                            onChange={(e) => setTime(e.target.value)}
-                        />
-                    </Form.Group>
-                </Col>
+            <Container>
+                <Row>
+                    <Col>
+                        <Form.Group className="mb-3" controlId="city">
+                            <Form.Label>Sede</Form.Label>
+                            <Form.Select
+                                aria-label="Località"
+                                value={city}
+                                onChange={(e) => setCity(e.target.value)}
+                            >
+                                <option value="---">---</option>
+                                <option value="Barcellona">Barcellona</option>
+                                <option value="Milazzo">Milazzo</option>
+                            </Form.Select>
+                        </Form.Group>
+                    </Col>
+                </Row>
 
-            </Row>
-            <Row>
-                <Col>
-                    
+                <Row>
+
+                    <Col>
+                        <Form.Group className="mb-3" controlId="date">
+                            <Form.Label>Data</Form.Label>
+                            <Form.Control
+                                type="date"
+                                value={date}
+                                onChange={(e) => setDate(e.target.value)}
+                            />
+                        </Form.Group>
+                    </Col>
+                    <Col>
+                        <Form.Group className="mb-3" controlId="hour">
+                            <Form.Label>Ora</Form.Label>
+                            <Form.Control
+                                type="time"
+                                value={time}
+                                onChange={(e) => setTime(e.target.value)}
+                            />
+                        </Form.Group>
+                    </Col>
+
+                </Row>
+                <Row>
+                    <Col>
                         <Form.Group className="mb-3" controlId="name">
                             <Form.Label>Nome</Form.Label>
                             <Form.Control
@@ -256,7 +255,7 @@ function FormText() {
                         </Form.Group>
                     </Col>
                     <Col>
-                    <Form.Group className="mb-3" controlId="age">
+                        <Form.Group className="mb-3" controlId="age">
                             <Form.Label>Età</Form.Label>
                             <Form.Control
                                 type="number"
@@ -265,7 +264,7 @@ function FormText() {
                             />
                         </Form.Group>
                     </Col>
-                        <Col>
+                    <Col>
                         <Form.Group className="mb-3" controlId="gender">
                             <Form.Label>Sesso</Form.Label>
                             <Form.Select
@@ -277,114 +276,105 @@ function FormText() {
                                 <option value="Bambino">Bambino</option>
                             </Form.Select>
                         </Form.Group>
-                        </Col>
-                        
-
-                  </Row>  
+                    </Col>
+                </Row>
                 <Row>
-                <Col>
-                    <Form>
-
-                        <Form.Group className="mb-3" controlId="food1">
-                            <Form.Label>Vuoto Palline/Liscio per numero</Form.Label>
-                            <Form.Select
-                                aria-label="Vuoto palline/liscio"
-                                value={food1}
-                                onChange={(e) => setFood1(e.target.value)}
-                            >
-                                <option value="---">---</option>
-                                <option value="vuoto palline">Vuoto Palline</option>
-                                <option value="vuoto liscio">Vuoto Liscio</option>
-                            </Form.Select>
-                        </Form.Group>
-                        <Form.Check
-                            type="switch"
-                            id="lettera"
-                            label="Lettera Si/No"
-                            checked={isLetteraEnabled}
-                            onChange={handleSwitchChange}
-                        />
-                        {isLetteraEnabled &&
-                            <Form.Group className="mb-3" controlId="food2">
-                                <Form.Label>Vuoto Palline/Liscio per lettera</Form.Label>
+                    <Col>
+                        <Form>
+                            <Form.Group className="mb-3" controlId="food1">
+                                <Form.Label>Vuoto Palline/Liscio per numero</Form.Label>
                                 <Form.Select
                                     aria-label="Vuoto palline/liscio"
-                                    value={food2}
-                                    onChange={(e) => setFood2(e.target.value)}
+                                    value={food1}
+                                    onChange={(e) => setFood1(e.target.value)}
                                 >
                                     <option value="---">---</option>
                                     <option value="vuoto palline">Vuoto Palline</option>
                                     <option value="vuoto liscio">Vuoto Liscio</option>
                                 </Form.Select>
-                            </Form.Group>}
-                    <Row>
-                        <Col>
-                        <Form.Group className="mb-3 auto" controlId="numChildren">
-                            <Form.Label>Numero bambini</Form.Label>
-                            <Form.Control
-                                type="number"
-                                value={numChildren}
-                                onChange={(e) => setNumChildren(e.target.value)}
+                            </Form.Group>
+                            <Form.Check
+                                type="switch"
+                                id="lettera"
+                                label="Lettera Si/No"
+                                checked={isLetteraEnabled}
+                                onChange={handleSwitchChange}
                             />
-                        </Form.Group>
-                        </Col>
-                        <Col>
-                        <Form.Group className="mb-3 auto" controlId="numAdults">
-                            <Form.Label>Numero adulti</Form.Label>
-                            <Form.Control
-                                type="number"
-                                value={numAdults}
-                                onChange={(e) => setNumAdults(e.target.value)}
+                            {isLetteraEnabled &&
+                                <Form.Group className="mb-3" controlId="food2">
+                                    <Form.Label>Vuoto Palline/Liscio per lettera</Form.Label>
+                                    <Form.Select
+                                        aria-label="Vuoto palline/liscio"
+                                        value={food2}
+                                        onChange={(e) => setFood2(e.target.value)}
+                                    >
+                                        <option value="---">---</option>
+                                        <option value="vuoto palline">Vuoto Palline</option>
+                                        <option value="vuoto liscio">Vuoto Liscio</option>
+                                    </Form.Select>
+                                </Form.Group>}
+                            <Row>
+                                <Col>
+                                    <Form.Group className="mb-3 auto" controlId="numChildren">
+                                        <Form.Label>Numero bambini</Form.Label>
+                                        <Form.Control
+                                            type="number"
+                                            value={numChildren}
+                                            onChange={(e) => setNumChildren(e.target.value)}
+                                        />
+                                    </Form.Group>
+                                </Col>
+                                <Col>
+                                    <Form.Group className="mb-3 auto" controlId="numAdults">
+                                        <Form.Label>Numero adulti</Form.Label>
+                                        <Form.Control
+                                            type="number"
+                                            value={numAdults}
+                                            onChange={(e) => setNumAdults(e.target.value)}
+                                        />
+                                    </Form.Group>
+                                </Col>
+                            </Row>
+                            <Form.Group className="mb-3" controlId="focaccia">
+                                <Form.Label>Gusti focaccia</Form.Label>
+                                <Form.Control
+                                    type="text"
+                                    value={focaccia}
+                                    onChange={(e) => setFocaccia(e.target.value)}
+                                />
+                            </Form.Group>
+                        </Form>
+                    </Col>
+                </Row>
+                <Row>
+                    <Button variant="primary" onClick={handleShow}>
+                        Genera messaggio
+                    </Button>
+                    <Modal show={show} onHide={handleClose}>
+                        <Modal.Header closeButton>
+                            <Modal.Title>Messaggio da copiare</Modal.Title>
+                        </Modal.Header>
+                        <Modal.Body>
+                            <textarea
+                                value={text}
+                                id="myInput"
+                                onChange={(e) => setText(e.target.value)}
+                                rows={6} // Numero di righe visibili
+                                style={{ width: '100%' }} // Larghezza 100%
                             />
-                        </Form.Group>
-                        </Col>
-                    </Row>
-                        
-                        
-                        <Form.Group className="mb-3" controlId="focaccia">
-                            <Form.Label>Gusti focaccia</Form.Label>
-                            <Form.Control
-                                type="text"
-                                value={focaccia}
-                                onChange={(e) => setFocaccia(e.target.value)}
-                            />
-                        </Form.Group>
-                    </Form>
-                </Col>
-            </Row>
-            <Row>
-                <Button variant="primary" onClick={handleShow}>
-                    Genera messaggio
-                </Button>
-
-                <Modal show={show} onHide={handleClose}>
-                    <Modal.Header closeButton>
-                        <Modal.Title>Messaggio da copiare</Modal.Title>
-                    </Modal.Header>
-                    <Modal.Body>
-                        <textarea
-                            value={text}
-                            id="myInput"
-                            onChange={(e) => setText(e.target.value)}
-                            rows={6} // Numero di righe visibili
-                            style={{ width: '100%' }} // Larghezza 100%
-                        />
-                        <Button onClick={myFunction}>Copia messaggio</Button>
-                    </Modal.Body>
-                    <Modal.Footer>
-                        <Button variant="secondary" onClick={handleClose}>
-                            Close
-                        </Button>
-                        <Button variant="primary" onClick={handleClose}>
-                            Save Changes
-                        </Button>
-                    </Modal.Footer>
-                </Modal>
-            </Row>
+                            <Button onClick={myFunction}>Copia messaggio</Button>
+                        </Modal.Body>
+                        <Modal.Footer>
+                            <Button variant="secondary" onClick={handleClose}>
+                                Close
+                            </Button>
+                            <Button variant="primary" onClick={handleClose}>
+                                Save Changes
+                            </Button>
+                        </Modal.Footer>
+                    </Modal>
+                </Row>
             </Container>
-
-
-
         </>
     );
 }
