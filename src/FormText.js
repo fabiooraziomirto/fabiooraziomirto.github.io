@@ -1,5 +1,5 @@
 import Form from 'react-bootstrap/Form';
-import { Button } from 'react-bootstrap';
+import { Button, Row, Col, Container } from 'react-bootstrap';
 import { useState } from 'react';
 import Modal from 'react-bootstrap/Modal';
 import customParseFormat from "dayjs/plugin/customParseFormat";
@@ -133,12 +133,12 @@ function FormText() {
     const [date, setDate] = useState('');
     const [time, setTime] = useState('');
     const [name, setName] = useState('');
-    const [age, setAge] = useState(1);
+    const [age, setAge] = useState(0);
     const [food1, setFood1] = useState('');
     const [food2, setFood2] = useState('');
     const [gender, setGender] = useState('');
-    const [numChildren, setNumChildren] = useState(1);
-    const [numAdults, setNumAdults] = useState(1);
+    const [numChildren, setNumChildren] = useState(0);
+    const [numAdults, setNumAdults] = useState(0);
     const [text, setText] = useState('');
     const [focaccia, setFocaccia] = useState('');
     const [isLetteraEnabled, setIsLetteraEnabled] = useState(false);
@@ -158,147 +158,201 @@ function FormText() {
         var minutoRitiro = timeRitiro.get('minute');
         var rusticiAdulti = parseInt(numAdults) + 5;
         var rusticiBambini = parseInt(numChildren) + 5;
-        var string = stringDate + " *" + city + "*" + "\n" 
-            + "*" + oraRitiro + ":" + minutoRitiro + "* \n\n"
-            + "Numero " + age + " " + food1 + "\n"
-            + "Lettera " + name.charAt(0) + " " + food2 + " \n"
-            + nPaninetti + " paninetti\n"
-            + numAdults + " brioches piccole vuote \n\n"
-            + "Bambini\n"
-            + rusticiBambini + " pizzette \n"
-            + numChildren + " arancini \n"
-            + numChildren + " pitoni prosciutto \n"
-            + numChildren + " wurstel \n\n"
-            + "Adulti \n"
-            + rusticiAdulti + " arancini\n"
-            + rusticiAdulti + " pitoni prosciutto\n"
-            + rusticiAdulti + " pitoni fritti verdure\n"
-            + rusticiAdulti + " san daniele\n"
-            + rusticiAdulti + " sfoglie norma\n"
-            + rusticiAdulti + " piccantini\n\n"
-            + Math.floor(numAdults / 13) + " teglie\n"
-            + focaccia;
-        if (isLetteraEnabled === true) {
-            setText(string)
-
+        if (parseInt(numAdults) > 0) {
+            var string = stringDate + " *" + city + "*" + "\n"
+                + "*" + oraRitiro + ":" + minutoRitiro + "* \n\n"
+                + "Numero " + age + " " + food1 + "\n"
+                + "Lettera " + name.charAt(0) + " " + food2 + " \n"
+                + nPaninetti + " paninetti\n"
+                + numAdults + " brioches piccole vuote \n\n"
+                + "Bambini\n"
+                + rusticiBambini + " pizzette \n"
+                + numChildren + " arancini \n"
+                + numChildren + " pitoni prosciutto \n"
+                + numChildren + " wurstel \n\n"
+                + "Adulti \n"
+                + rusticiAdulti + " arancini\n"
+                + rusticiAdulti + " pitoni prosciutto\n"
+                + rusticiAdulti + " pitoni fritti verdure\n"
+                + rusticiAdulti + " san daniele\n"
+                + rusticiAdulti + " sfoglie norma\n"
+                + rusticiAdulti + " piccantini\n\n"
+                + Math.floor(numAdults / 13) + " teglie\n"
+                + focaccia;
+        } else {
+            var string = stringDate + " *" + city + "*" + "\n"
+                + "*" + oraRitiro + ":" + minutoRitiro + "* \n\n"
+                + "Numero " + age + " " + food1 + "\n"
+                + "Lettera " + name.charAt(0) + " " + food2 + " \n"
+                + nPaninetti + " paninetti\n\n"
+                + "Bambini\n"
+                + rusticiBambini + " pizzette \n"
+                + numChildren + " arancini \n"
+                + numChildren + " pitoni prosciutto \n"
+                + numChildren + " wurstel \n\n";
         }
+
+        setText(string)
+
 
         setShow(true);
     }
 
     return (
         <>
-            <Form>
-                <Form.Group className="mb-3" controlId="city">
-                    <Form.Label>Località</Form.Label>
-                    <Form.Select
-                        aria-label="Località"
-                        value={city}
-                        onChange={(e) => setCity(e.target.value)}
-                    >
-                        <option value="---">---</option>
-                        <option value="Barcellona">Barcellona</option>
-                        <option value="Milazzo">Milazzo</option>
-                    </Form.Select>
-                </Form.Group>
-                <Form.Group className="mb-3" controlId="date">
-                    <Form.Label>Giorno festa</Form.Label>
-                    <Form.Control
-                        type="date"
-                        value={date}
-                        onChange={(e) => setDate(e.target.value)}
-                    />
-                </Form.Group>
-                <Form.Group className="mb-3" controlId="hour">
-                    <Form.Label>Orario festa</Form.Label>
-                    <Form.Control
-                        type="time"
-                        value={time}
-                        onChange={(e) => setTime(e.target.value)}
-                    />
-                </Form.Group>
-                <Form.Group className="mb-3" controlId="name">
-                    <Form.Label>Nome</Form.Label>
-                    <Form.Control
-                        type="text"
-                        value={name}
-                        onChange={(e) => setName(e.target.value)}
-                    />
-                </Form.Group>
-                <Form.Group className="mb-3" controlId="age">
-                    <Form.Label>Età</Form.Label>
-                    <Form.Control
-                        type="number"
-                        value={age}
-                        onChange={(e) => setAge(e.target.value)}
-                    />
-                </Form.Group>
-                <Form.Group className="mb-3" controlId="food1">
-                    <Form.Label>Vuoto Palline/Liscio per numero</Form.Label>
-                    <Form.Select
-                        aria-label="Vuoto palline/liscio"
-                        value={food1}
-                        onChange={(e) => setFood1(e.target.value)}
-                    >
-                        <option value="---">---</option>
-                        <option value="vuoto palline">Vuoto Palline</option>
-                        <option value="vuoto liscio">Vuoto Liscio</option>
-                    </Form.Select>
-                </Form.Group>
-                <Form.Check
-                    type="switch"
-                    id="lettera"
-                    label="Lettera Si/No"
-                    checked={isLetteraEnabled}
-                    onChange={handleSwitchChange}
-                />
-                <Form.Group className="mb-3" controlId="food2">
-                    <Form.Label>Vuoto Palline/Liscio per lettera</Form.Label>
-                    <Form.Select
-                        aria-label="Vuoto palline/liscio"
-                        value={food2}
-                        onChange={(e) => setFood2(e.target.value)}
-                    >
-                        <option value="---">---</option>
-                        <option value="vuoto palline">Vuoto Palline</option>
-                        <option value="vuoto liscio">Vuoto Liscio</option>
-                    </Form.Select>
-                </Form.Group>
-                <Form.Group className="mb-3" controlId="gender">
-                    <Form.Label>Sesso</Form.Label>
-                    <Form.Select
-                        aria-label="Sesso"
-                        value={gender}
-                        onChange={(e) => setGender(e.target.value)}
-                    >
-                        <option value="Bambina">Bambina</option>
-                        <option value="Bambino">Bambino</option>
-                    </Form.Select>
-                </Form.Group>
-                <Form.Group className="mb-3" controlId="numChildren">
-                    <Form.Label>Numero bambini</Form.Label>
-                    <Form.Control
-                        type="number"
-                        value={numChildren}
-                        onChange={(e) => setNumChildren(e.target.value)}
-                    />
-                </Form.Group>
-                <Form.Group className="mb-3" controlId="numAdults">
-                    <Form.Label>Numero adulti</Form.Label>
-                    <Form.Control
-                        type="number"
-                        value={numAdults}
-                        onChange={(e) => setNumAdults(e.target.value)}
-                    />
-                </Form.Group>
-                <Form.Group className="mb-3" controlId="focaccia">
-                    <Form.Label>Gusti focaccia</Form.Label>
-                    <Form.Control
-                        type="text"
-                        value={focaccia}
-                        onChange={(e) => setFocaccia(e.target.value)}
-                    />
-                </Form.Group>
+
+        <Container>
+            <Row>
+            <Col>
+                    <Form.Group className="mb-3" controlId="city">
+                        <Form.Label>Sede</Form.Label>
+                        <Form.Select
+                            aria-label="Località"
+                            value={city}
+                            onChange={(e) => setCity(e.target.value)}
+                        >
+                            <option value="---">---</option>
+                            <option value="Barcellona">Barcellona</option>
+                            <option value="Milazzo">Milazzo</option>
+                        </Form.Select>
+                    </Form.Group>
+                </Col>
+            </Row>
+        
+            <Row>
+                
+                <Col>
+                    <Form.Group className="mb-3" controlId="date">
+                        <Form.Label>Data</Form.Label>
+                        <Form.Control
+                            type="date"
+                            value={date}
+                            onChange={(e) => setDate(e.target.value)}
+                        />
+                    </Form.Group>
+                </Col>
+                <Col>
+                    <Form.Group className="mb-3" controlId="hour">
+                        <Form.Label>Ora</Form.Label>
+                        <Form.Control
+                            type="time"
+                            value={time}
+                            onChange={(e) => setTime(e.target.value)}
+                        />
+                    </Form.Group>
+                </Col>
+
+            </Row>
+            <Row>
+                <Col>
+                    
+                        <Form.Group className="mb-3" controlId="name">
+                            <Form.Label>Nome</Form.Label>
+                            <Form.Control
+                                type="text"
+                                value={name}
+                                onChange={(e) => setName(e.target.value)}
+                            />
+                        </Form.Group>
+                    </Col>
+                    <Col>
+                    <Form.Group className="mb-3" controlId="age">
+                            <Form.Label>Età</Form.Label>
+                            <Form.Control
+                                type="number"
+                                value={age}
+                                onChange={(e) => setAge(e.target.value)}
+                            />
+                        </Form.Group>
+                    </Col>
+                        <Col>
+                        <Form.Group className="mb-3" controlId="gender">
+                            <Form.Label>Sesso</Form.Label>
+                            <Form.Select
+                                aria-label="Sesso"
+                                value={gender}
+                                onChange={(e) => setGender(e.target.value)}
+                            >
+                                <option value="Bambina">Bambina</option>
+                                <option value="Bambino">Bambino</option>
+                            </Form.Select>
+                        </Form.Group>
+                        </Col>
+                        
+
+                  </Row>  
+                <Row>
+                <Col>
+                    <Form>
+
+                        <Form.Group className="mb-3" controlId="food1">
+                            <Form.Label>Vuoto Palline/Liscio per numero</Form.Label>
+                            <Form.Select
+                                aria-label="Vuoto palline/liscio"
+                                value={food1}
+                                onChange={(e) => setFood1(e.target.value)}
+                            >
+                                <option value="---">---</option>
+                                <option value="vuoto palline">Vuoto Palline</option>
+                                <option value="vuoto liscio">Vuoto Liscio</option>
+                            </Form.Select>
+                        </Form.Group>
+                        <Form.Check
+                            type="switch"
+                            id="lettera"
+                            label="Lettera Si/No"
+                            checked={isLetteraEnabled}
+                            onChange={handleSwitchChange}
+                        />
+                        {isLetteraEnabled &&
+                            <Form.Group className="mb-3" controlId="food2">
+                                <Form.Label>Vuoto Palline/Liscio per lettera</Form.Label>
+                                <Form.Select
+                                    aria-label="Vuoto palline/liscio"
+                                    value={food2}
+                                    onChange={(e) => setFood2(e.target.value)}
+                                >
+                                    <option value="---">---</option>
+                                    <option value="vuoto palline">Vuoto Palline</option>
+                                    <option value="vuoto liscio">Vuoto Liscio</option>
+                                </Form.Select>
+                            </Form.Group>}
+                    <Row>
+                        <Col>
+                        <Form.Group className="mb-3 auto" controlId="numChildren">
+                            <Form.Label>Numero bambini</Form.Label>
+                            <Form.Control
+                                type="number"
+                                value={numChildren}
+                                onChange={(e) => setNumChildren(e.target.value)}
+                            />
+                        </Form.Group>
+                        </Col>
+                        <Col>
+                        <Form.Group className="mb-3 auto" controlId="numAdults">
+                            <Form.Label>Numero adulti</Form.Label>
+                            <Form.Control
+                                type="number"
+                                value={numAdults}
+                                onChange={(e) => setNumAdults(e.target.value)}
+                            />
+                        </Form.Group>
+                        </Col>
+                    </Row>
+                        
+                        
+                        <Form.Group className="mb-3" controlId="focaccia">
+                            <Form.Label>Gusti focaccia</Form.Label>
+                            <Form.Control
+                                type="text"
+                                value={focaccia}
+                                onChange={(e) => setFocaccia(e.target.value)}
+                            />
+                        </Form.Group>
+                    </Form>
+                </Col>
+            </Row>
+            <Row>
                 <Button variant="primary" onClick={handleShow}>
                     Genera messaggio
                 </Button>
@@ -326,7 +380,11 @@ function FormText() {
                         </Button>
                     </Modal.Footer>
                 </Modal>
-            </Form>
+            </Row>
+            </Container>
+
+
+
         </>
     );
 }
