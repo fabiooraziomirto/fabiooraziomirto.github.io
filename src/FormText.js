@@ -237,7 +237,7 @@ function FormText() {
                     <Form.Label>Vuoto Palline/Liscio per numero</Form.Label>
                     <Form.Select
                         aria-label="Vuoto palline/liscio"
-                        value={city}
+                        value={food1}
                         onChange={(e) => setFood1(e.target.value)}
                     >
                         <option value="---">---</option>
@@ -256,7 +256,7 @@ function FormText() {
                     <Form.Label>Vuoto Palline/Liscio per lettera</Form.Label>
                     <Form.Select
                         aria-label="Vuoto palline/liscio"
-                        value={city}
+                        value={food2}
                         onChange={(e) => setFood2(e.target.value)}
                     >
                         <option value="---">---</option>
