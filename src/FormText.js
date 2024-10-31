@@ -1,4 +1,5 @@
 import Form from 'react-bootstrap/Form';
+import { useEffect } from 'react';
 import { Button, Row, Col, Container } from 'react-bootstrap';
 import { useState } from 'react';
 import Modal from 'react-bootstrap/Modal';
@@ -26,7 +27,6 @@ function FormText() {
     }
     function fromDateToString(dateV) {
         var stringTmp1 = dayjs(dateV).toString();
-        var stringTmp2;
         var weekDay = stringTmp1.split(",")[0];
         var number = stringTmp1.split(",")[1].split(" ")[1];
         var month = stringTmp1.split(",")[1].split(" ")[2];
@@ -53,6 +53,9 @@ function FormText() {
                 break;
             case "Sun":
                 day = "Domenica";
+                break;
+            default:
+                day = weekDay;
                 break;
         }
 
@@ -93,10 +96,12 @@ function FormText() {
             case "Dec":
                 monthName = "Dicembre";
                 break;
+            default:
+                monthName = month;
+                break;
         }
 
         var returnString = day + " " + number + " " + monthName;
-        console.log(returnString)
         return returnString;
     }
 
@@ -124,7 +129,7 @@ function FormText() {
     }
 
     function teglieFocaccia(num) {
-        if (num % 12 == 0)
+        if (num % 12 === 0)
             return Math.floor(num / 12)
         else if (num % 12 > 8)
             return Math.round(num / 12)
@@ -137,7 +142,6 @@ function FormText() {
 
     function oraRitiroRustici(city, time) {
         const hour = dayjs(time, "HH:mm");
-        console.log(hour)
         var timeBarc = dayjs.duration({
             minutes: 30,
             hours: 1
@@ -147,11 +151,9 @@ function FormText() {
             hours: 1
         });
         if (city === "Barcellona") {
-            console.log(hour.add(timeBarc));
             return hour.add(timeBarc);
         }
         else {
-            console.log(dayjs(time).add(timeMil));
             return dayjs(time).add(timeMil);
         }
     }
@@ -169,6 +171,15 @@ function FormText() {
     const [numAdults, setNumAdults] = useState(0);
     const [text, setText] = useState('');
     const [focaccia, setFocaccia] = useState('');
+    const [numeroTeglie, setNumeroTeglie] = useState('');
+
+    useEffect(() => {
+        // Esempio di calcolo: modifica il calcolo in base alle tue esigenze
+        var nuovoValore = teglieFocaccia(numAdults);
+        const nVal = Math.round(((nuovoValore)*2))/2;
+        setNumeroTeglie(nVal);
+    }, [numAdults]);
+
     const [isLetteraEnabled, setIsLetteraEnabled] = useState(false);
 
     const handleSwitchChange = (e) => {
@@ -178,7 +189,6 @@ function FormText() {
     const handleClose = () => setShow(false);
 
     const handleShow = () => {
-        const add = 5;
         var stringDate = fromDateToString(date);
         var nPaninetti = numberPaninetti(numChildren);
         var timeRitiro = oraRitiroRustici(city, time);
@@ -187,15 +197,15 @@ function FormText() {
         var lowerRusticiAdulti = lowerNumberRustici(numAdults);
         var upperRusticiBambini = upperNumberRustici(numChildren);
         var lowerRusticiBambini = lowerNumberRustici(numChildren);
-        var teglieF = teglieFocaccia(numAdults);
-        var tegliaDecimale = teglieF - Math.floor(teglieF);
+        var tegliaDecimale = numeroTeglie - Math.floor(numeroTeglie);
         var stringaFocaccia
+        var string;
         if(tegliaDecimale !== 0)
-            stringaFocaccia = Math.floor(teglieF) + " teglie e mezzo"
+            stringaFocaccia = Math.floor(numeroTeglie) + " teglie e mezzo"
         else 
-            stringaFocaccia = teglieF + " teglie"
+            stringaFocaccia = numeroTeglie + " teglie"
         if (parseInt(numAdults) > 0) {
-            var string = stringDate + " *" + city + "*" + "\n"
+            string = stringDate + " *" + city + "*" + "\n"
                 + "*" + oraRitiro + ":" + minutoRitiro + "* \n\n"
                 + "Numero " + age + " " + food1 + "\n"
                 + "Lettera " + name.charAt(0).toLocaleUpperCase() + " " + food2 + " \n"
@@ -216,7 +226,7 @@ function FormText() {
                 + stringaFocaccia+ " \n"
                 + focaccia;
         } else {
-            var string = stringDate + " *" + city + "*" + "\n"
+            string = stringDate + " *" + city + "*" + "\n"
                 + "*" + oraRitiro + ":" + minutoRitiro + "* \n\n"
                 + "Numero " + age + " " + food1 + "\n"
                 + "Lettera " + name.charAt(0) + " " + food2 + " \n"
@@ -369,7 +379,9 @@ function FormText() {
                                     </Form.Group>
                                 </Col>
                             </Row>
-                            <Form.Group className="mb-3" controlId="focaccia">
+                            <Row>
+                                <Col>
+                                <Form.Group className="mb-3" controlId="focaccia">
                                 <Form.Label>Gusti focaccia</Form.Label>
                                 <Form.Control
                                     type="text"
@@ -377,6 +389,21 @@ function FormText() {
                                     onChange={(e) => setFocaccia(e.target.value)}
                                 />
                             </Form.Group>
+                                </Col>
+                            <Col>
+                                <Form.Group className="mb-3 auto" controlId="numAdults">
+                                        <Form.Label>Numero teglie</Form.Label>
+                                        <Form.Control
+                                            type="number"
+                                            value={numeroTeglie}
+                                            onChange={(e) => setNumeroTeglie(e.target.value)}
+                                            step={0.5}
+                                        />
+                                </Form.Group>
+                            </Col>
+                            
+                            </Row>
+                            
                         </Form>
                     </Col>
                 </Row>
