@@ -126,9 +126,9 @@ function FormText() {
     function teglieFocaccia(num) {
         if (num % 12 == 0)
             return Math.floor(num / 12)
-        else if (num % 12 > 7)
+        else if (num % 12 > 8)
             return Math.round(num / 12)
-        else if (num % 12 == 6)
+        else if (num % 12 > 6 || num %12 < 8)
             return num/12
         else 
             return Math.floor(num / 12)
@@ -190,7 +190,7 @@ function FormText() {
         var teglieF = teglieFocaccia(numAdults);
         var tegliaDecimale = teglieF - Math.floor(teglieF);
         var stringaFocaccia
-        if(tegliaDecimale === 0.5)
+        if(tegliaDecimale !== 0)
             stringaFocaccia = Math.floor(teglieF) + " teglie e mezzo"
         else 
             stringaFocaccia = teglieF + " teglie"
