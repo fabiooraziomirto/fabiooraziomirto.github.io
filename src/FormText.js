@@ -107,6 +107,34 @@ function FormText() {
             return Math.floor(parseInt(numChildren) / 5) * 5 + 5;
     }
 
+    function upperNumberRustici(num) {
+        if (num % 5 === 0)
+            return parseInt(num) + 5;
+        else if (num % 5 > 3) 
+            return Math.floor(parseInt(num) / 5) * 5 + 10;
+        else 
+            return Math.floor(parseInt(num) / 5) * 5 + 5;
+    }
+
+    function lowerNumberRustici(num) {
+        if (num % 5 >= 2) 
+            return Math.floor(parseInt(num) / 5) * 5 + 5;
+        else
+            return Math.floor(parseInt(num) / 5) * 5;
+    }
+
+    function teglieFocaccia(num) {
+        if (num % 12 == 0)
+            return Math.floor(num / 12)
+        else if (num % 12 > 7)
+            return Math.round(num / 12)
+        else if (num % 12 == 6)
+            return num/12
+        else 
+            return Math.floor(num / 12)
+        
+    }
+
     function oraRitiroRustici(city, time) {
         const hour = dayjs(time, "HH:mm");
         console.log(hour)
@@ -156,28 +184,36 @@ function FormText() {
         var timeRitiro = oraRitiroRustici(city, time);
         var oraRitiro = timeRitiro.get('hour');
         var minutoRitiro = timeRitiro.get('minute');
-        var rusticiAdulti = parseInt(numAdults) + 5;
-        var rusticiBambini = parseInt(numChildren) + 5;
+        var lowerRusticiAdulti = lowerNumberRustici(numAdults);
+        var upperRusticiBambini = upperNumberRustici(numChildren);
+        var lowerRusticiBambini = lowerNumberRustici(numChildren);
+        var teglieF = teglieFocaccia(numAdults);
+        var tegliaDecimale = teglieF - Math.floor(teglieF);
+        var stringaFocaccia
+        if(tegliaDecimale === 0.5)
+            stringaFocaccia = Math.floor(teglieF) + " teglie e mezzo"
+        else 
+            stringaFocaccia = teglieF + " teglie"
         if (parseInt(numAdults) > 0) {
             var string = stringDate + " *" + city + "*" + "\n"
                 + "*" + oraRitiro + ":" + minutoRitiro + "* \n\n"
                 + "Numero " + age + " " + food1 + "\n"
-                + "Lettera " + name.charAt(0) + " " + food2 + " \n"
+                + "Lettera " + name.charAt(0).toLocaleUpperCase() + " " + food2 + " \n"
                 + nPaninetti + " paninetti\n"
-                + numAdults + " brioches piccole vuote \n\n"
+                + lowerRusticiAdulti + " brioches piccole vuote \n\n"
                 + "Bambini\n"
-                + rusticiBambini + " pizzette \n"
-                + numChildren + " arancini \n"
-                + numChildren + " pitoni prosciutto \n"
-                + numChildren + " wurstel \n\n"
+                + upperRusticiBambini + " pizzette \n"
+                + lowerRusticiBambini + " arancini \n"
+                + lowerRusticiBambini + " pitoni prosciutto \n"
+                + lowerRusticiBambini + " wurstel \n\n"
                 + "Adulti \n"
-                + rusticiAdulti + " arancini\n"
-                + rusticiAdulti + " pitoni prosciutto\n"
-                + rusticiAdulti + " pitoni fritti verdure\n"
-                + rusticiAdulti + " san daniele\n"
-                + rusticiAdulti + " sfoglie norma\n"
-                + rusticiAdulti + " piccantini\n\n"
-                + Math.floor(numAdults / 13) + " teglie\n"
+                + lowerRusticiAdulti + " arancini\n"
+                + lowerRusticiAdulti + " pitoni prosciutto\n"
+                + lowerRusticiAdulti + " pitoni fritti verdure\n"
+                + lowerRusticiAdulti + " san daniele\n"
+                + lowerRusticiAdulti + " sfoglie norma\n"
+                + lowerRusticiAdulti + " piccantini\n\n"
+                + stringaFocaccia+ " \n"
                 + focaccia;
         } else {
             var string = stringDate + " *" + city + "*" + "\n"
@@ -186,15 +222,13 @@ function FormText() {
                 + "Lettera " + name.charAt(0) + " " + food2 + " \n"
                 + nPaninetti + " paninetti\n\n"
                 + "Bambini\n"
-                + rusticiBambini + " pizzette \n"
-                + numChildren + " arancini \n"
-                + numChildren + " pitoni prosciutto \n"
-                + numChildren + " wurstel \n\n";
+                + upperRusticiBambini + " pizzette \n"
+                + lowerRusticiBambini + " arancini \n"
+                + lowerRusticiBambini + " pitoni prosciutto \n"
+                + lowerRusticiBambini + " wurstel \n\n";
         }
 
         setText(string)
-
-
         setShow(true);
     }
 
